@@ -1,7 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
+import '../firebase_options.dart';
 import 'enums/environment.enum.dart';
 import 'injection/dependency.injection.dart';
 
@@ -25,14 +27,14 @@ class CoreConfig {
   Future<void> initializeLibrary() async {
     // await Hive.initFlutter();
 
-    // await _initFirebase();
+    await _initFirebase();
 
     await DependencyInjection.instance.initialize();
   }
 
   Future<void> _initFirebase() async {
-    // await Firebase.initializeApp(
-    //     options: DefaultFirebaseOptions.currentPlatform);
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform);
 
     await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
     FlutterError.onError = (FlutterErrorDetails details) {
