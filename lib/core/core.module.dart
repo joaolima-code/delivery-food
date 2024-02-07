@@ -14,7 +14,7 @@ class CoreModule extends StatelessWidget {
         themeMode: ThemeMode.light,
         title: 'Delivery-food',
         debugShowCheckedModeBanner: false,
-        initialRoute: '/auth',
+        initialRoute: '/',
         onGenerateRoute: (RouteSettings settings) =>
             CoreRoute.instance.generateRoutes(settings),
         onUnknownRoute: (RouteSettings settings) =>

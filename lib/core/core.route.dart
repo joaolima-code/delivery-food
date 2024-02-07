@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../features/auth/initial/auth.initial.module.dart';
 import '../features/home/home.module.dart';
 import '../features/notFound/notFound.module.dart';
-import '../features/splash/presentation/splash.page.dart';
+import '../features/splash/presentation/splash.module.dart';
 
 class CoreRoute {
   CoreRoute._internal();
@@ -17,7 +17,7 @@ class CoreRoute {
 
     switch (settings.name) {
       case '/':
-        page = _pageRoute(const SplashPage(), settings);
+        page = _pageRoute(const SplashModule(), settings);
         break;
       case '/home':
         page = _pageRoute(const HomeModule(), settings);

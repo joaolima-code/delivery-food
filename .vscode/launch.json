@@ -5,9 +5,11 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "delivery_food",
+      "name": "local release",
+      "program": "lib/main.dart",
       "request": "launch",
-      "type": "dart"
+      "type": "dart",
+      "flutterMode": "debug"
     },
     {
       "name": "delivery_food (profile mode)",

@@ -12,17 +12,32 @@ class AuthInitialPage extends StatefulWidget {
 class _AuthInitialPageState extends State<AuthInitialPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      backgroundColor: Colors.blueAccent,
       body: Stack(children: <Widget>[
-        DecoratedBox(
-          decoration: BoxDecoration(
+        Container(
+          decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(ImagePath.backgroundInitialPage),
-                  fit: BoxFit.fitHeight)),
+                  fit: BoxFit.fitHeight,
+                  opacity: 0.85)),
         ),
         Center(
-          child: Column(
-            children: <Widget>[],
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 48),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: ClipOval(
+                        child: Image(
+                            height: 500, image: AssetImage(ImagePath.logo)))),
+                SizedBox(height: 24),
+                TextButton(onPressed: () {}, child: Text('Proximo'))
+              ],
+            ),
           ),
         )
       ]),
