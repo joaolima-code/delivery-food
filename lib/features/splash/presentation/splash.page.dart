@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-import '../../../core/core.config.dart';
 import '../../../core/util/core.navigator.util.dart';
 import '../../auth/initial/auth.initial.module.dart';
 import '../../home/home.module.dart';

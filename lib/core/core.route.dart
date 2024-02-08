@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../features/auth/initial/auth.initial.module.dart';
+import '../features/auth/login/auth.login.module.dart';
+import '../features/auth/register/auth.register.module.dart';
 import '../features/home/home.module.dart';
 import '../features/notFound/notFound.module.dart';
 import '../features/splash/presentation/splash.module.dart';
@@ -24,6 +26,12 @@ class CoreRoute {
         break;
       case '/auth':
         page = _pageRoute(const AuthInitialModule(), settings);
+        break;
+      case '/auth/login':
+        page = _pageRoute(const AuthLoginModule(), settings);
+        break;
+      case '/auth/register':
+        page = _pageRoute(const AuthRegisterModule(), settings);
         break;
       default:
         page = _pageRoute(const NotFoundModule(), settings);

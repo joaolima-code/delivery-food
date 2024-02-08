@@ -38,4 +38,8 @@ class CoreNavigatorUtil {
       arguments: arguments,
     );
   }
+
+  void pop(BuildContext context) {
+    Navigator.pop(context);
+  }
 }
