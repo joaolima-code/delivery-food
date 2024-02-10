@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/util/core.navigator.util.dart';
+import '../../../shared/widgets/buttons/back.button.widget.dart';
 import 'cubit/auth.login.cubit.dart';
 import 'widgets/auth.login.form.widget.dart';
 
@@ -16,11 +16,8 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            title: Text('Entrar'),
-            leading: IconButton(
-                onPressed: () => CoreNavigatorUtil.instance.pop(context),
-                icon: const Icon(Icons.arrow_back_ios_new_rounded))),
+        appBar:
+            AppBar(title: Text('Entrar'), leading: const BackButtonWidget()),
         body: BlocListener<AuthLoginCubit, AuthLoginState>(
             listener: (BuildContext context, AuthLoginState state) {
               // TODO: implement listener

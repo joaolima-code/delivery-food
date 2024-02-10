@@ -5,7 +5,7 @@ class FormInputWidget extends StatefulWidget {
     required this.hintText,
     required this.textEditingController,
     required this.textInputType,
-    required this.label,
+    this.label,
     this.onFocusChange,
     this.validator,
     this.onTap,
@@ -18,7 +18,7 @@ class FormInputWidget extends StatefulWidget {
   });
 
   final String hintText;
-  final String label;
+  final String? label;
 
   final TextEditingController textEditingController;
   final TextInputType textInputType;
@@ -65,40 +65,40 @@ class _FormInputWidgetState extends State<FormInputWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        Container(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: widget.forgotPassword == null
-                ? Text(widget.label,
-                    style: Theme.of(context).textTheme.titleSmall)
-                : Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                        Text(widget.label,
-                            style: Theme.of(context).textTheme.titleSmall),
-                        widget.forgotPassword!
-                      ])),
-        TextFormField(
-          controller: widget.textEditingController,
-          onTap: widget.onTap,
-          onChanged: widget.onChanged,
-          obscureText: !_passwordVisible && widget.suffixVisibleText,
-          keyboardType: widget.textInputType,
-          enableSuggestions: false,
-          autocorrect: false,
-          focusNode: _focus,
-          decoration: InputDecoration(
-              hintText: widget.hintText,
-              suffixIcon: buildSuffix(),
-              prefixIcon: widget.prefixIcon,
-              // todo: definir no tema tanto suffix quanto prefix
-              suffixIconConstraints:
-                  const BoxConstraints(maxHeight: 40, maxWidth: 40)),
-          validator: widget.validator,
-        ),
-      ],
-    );
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          if (widget.label != null)
+            Container(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: widget.forgotPassword == null
+                    ? Text(widget.label!,
+                        style: Theme.of(context).textTheme.titleSmall)
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                            Text(widget.label!,
+                                style: Theme.of(context).textTheme.titleSmall),
+                            widget.forgotPassword!
+                          ])),
+          TextFormField(
+              controller: widget.textEditingController,
+              onTap: widget.onTap,
+              onChanged: widget.onChanged,
+              obscureText: !_passwordVisible && widget.suffixVisibleText,
+              keyboardType: widget.textInputType,
+              enableSuggestions: false,
+              autocorrect: false,
+              focusNode: _focus,
+              decoration: InputDecoration(
+                  hintText: widget.hintText,
+                  suffixIcon: buildSuffix(),
+                  prefixIcon: widget.prefixIcon,
+                  prefixIconConstraints:
+                      const BoxConstraints(maxHeight: 40, maxWidth: 40),
+                  suffixIconConstraints:
+                      const BoxConstraints(maxHeight: 40, maxWidth: 40)),
+              validator: widget.validator)
+        ]);
   }
 
   Widget? buildSuffix() {

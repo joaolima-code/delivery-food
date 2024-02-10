@@ -18,9 +18,6 @@ class SplashInjection extends InjectionInterface {
 
   @override
   Future<void> build() async {
-    // restante
-
     injector.registerFactory(() => SplashCubit());
-    // cubit registerFactory
   }
 }

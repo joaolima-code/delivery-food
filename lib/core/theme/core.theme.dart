@@ -7,10 +7,12 @@ class CoreTheme {
   static ThemeData get themeDefault => ThemeData(
       visualDensity: VisualDensity.adaptivePlatformDensity,
       dividerTheme: const DividerThemeData(),
+      useMaterial3: false,
       appBarTheme: AppBarTheme(
           centerTitle: true,
-          backgroundColor: colorScheme.background,
-          titleTextStyle: textTheme.titleLarge),
+          backgroundColor: colorScheme.primary.withOpacity(0.80),
+          titleTextStyle: textTheme.titleLarge,
+          iconTheme: IconThemeData(color: colorScheme.onPrimary)),
       scaffoldBackgroundColor: colorScheme.background,
       textTheme: textTheme,
       colorScheme: colorScheme,
@@ -54,7 +56,7 @@ class CoreTheme {
       background: Colors.white,
       onBackground: Colors.black,
       surface: Colors.white,
-      onSurface: Colors.black);
+      onSurface: Colors.black54);
 
   static TextTheme get textTheme => const TextTheme(
       titleLarge: TextStyle(color: Colors.black, fontSize: 18, height: 1.27),
@@ -100,7 +102,7 @@ class CoreTheme {
           color: Colors.black54,
           fontStyle: FontStyle.normal,
           fontWeight: FontWeight.w500,
-          fontSize: 11,
+          fontSize: 10,
           height: 1.45,
           letterSpacing: 0.5));
 

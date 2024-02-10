@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/util/core.navigator.util.dart';
+import '../../../shared/widgets/buttons/back.button.widget.dart';
 import 'cubit/auth.register.cubit.dart';
 import 'widgets/auth.register.form.widget.dart';
 
@@ -17,10 +17,7 @@ class _AuthRegisterPageState extends State<AuthRegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Cadastro'),
-          leading: IconButton(
-              onPressed: () => CoreNavigatorUtil.instance.pop(context),
-              icon: const Icon(Icons.arrow_back_ios_new_rounded))),
+          title: const Text('Cadastro'), leading: const BackButtonWidget()),
       body: BlocListener<AuthRegisterCubit, AuthRegisterState>(
           listener: (BuildContext context, AuthRegisterState state) {},
           child: SingleChildScrollView(

@@ -8,8 +8,8 @@ class SplashCubit extends Cubit<SplashState> {
   }
 
   Future<void> checkSessionStatus() async {
-    Future.delayed(Duration(seconds: 5), () {
-      emit(AuthenticateState());
+    Future<dynamic>.delayed(const Duration(seconds: 5), () {
+      emit(HomeState());
     });
   }
 }
