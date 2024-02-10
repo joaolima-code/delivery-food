@@ -49,7 +49,7 @@ class CoreTheme {
       brightness: Brightness.light,
       primary: Color.fromARGB(255, 111, 86, 145),
       onPrimary: Colors.white,
-      secondary: Color(0xFF0072ED),
+      secondary: Color(0xFF7116E9),
       onSecondary: Colors.black,
       error: Colors.red,
       onError: Colors.white,

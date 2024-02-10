@@ -20,16 +20,7 @@ class _HomeTimelineAppBarWidgetState extends State<HomeTimelineAppBarWidget> {
             constraints: const BoxConstraints(maxHeight: 24, maxWidth: 24),
             icon: const Icon(Icons.menu_rounded, size: 24),
             onPressed: () async {
-              // await cubit.updateUserInfo();
-              // if (context.mounted) {
-              //   DragBottomSheetDialogWidget.showBottomSheet(
-              //       context: context,
-              //       isScrollControlled: true,
-              //       builder: (BuildContext context) =>
-              //           HomeInitialBottomSheetWidget(
-              //               isAuthenticated: cubit.isAuthenticated,
-              //               userInfo: cubit.sessionModel?.userInfo));
-              // }
+              Scaffold.of(context).openDrawer();
             }),
         actions: <Widget>[
           Container(
