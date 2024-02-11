@@ -7,6 +7,7 @@ import '../../features/home/home.injection.dart';
 import '../../features/restaurant/restaurant.injection.dart';
 import '../../features/splash/splash.injection.dart';
 import '../core.config.dart';
+import '../external/core.external.injection.dart';
 import '../network/core.network.connection.dart';
 import '../network/core.network.dio.client.dart';
 import '../network/core.network.dio.interceptor.dart';
@@ -25,6 +26,8 @@ class DependencyInjection {
         .build(CoreConfig.instance.baseUrl, CoreNetworkDioInterceptor()));
     injector.registerLazySingleton<CoreNetworkConnectionInterface>(
         () => CoreNetworkConnection());
+
+    await CoreExternalInjection.getInstance(injector).build();
 
     await SplashInjection.getInstance(injector).build();
     await AuthInjection.getInstance(injector).build();

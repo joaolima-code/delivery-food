@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../cubit/home.timeline.cubit.dart';
 
 class HomeTimelineAppBarWidget extends StatefulWidget {
   const HomeTimelineAppBarWidget({super.key});
@@ -9,9 +12,12 @@ class HomeTimelineAppBarWidget extends StatefulWidget {
 }
 
 class _HomeTimelineAppBarWidgetState extends State<HomeTimelineAppBarWidget> {
+  late HomeTimelineCubit _cubit;
+
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
+    _cubit = context.watch<HomeTimelineCubit>();
 
     return AppBar(
         leading: IconButton(
@@ -25,22 +31,24 @@ class _HomeTimelineAppBarWidgetState extends State<HomeTimelineAppBarWidget> {
         actions: <Widget>[
           Container(
               constraints: BoxConstraints(
-                  maxWidth: MediaQuery.sizeOf(context).width * 0.6),
+                  maxWidth: MediaQuery.sizeOf(context).width * 0.8),
               padding: const EdgeInsets.only(right: 16),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      'Ola fred, voce está nesse endereço',
+                      'Ola fred, buscando restaurantes perto de:',
                       style: theme.textTheme.titleSmall!
                           .copyWith(color: theme.colorScheme.onPrimary),
                     ),
-                    Text('Rua amazonas, 123',
-                        style: theme.textTheme.bodyMedium!.copyWith(
-                            color: theme.colorScheme.onSurface,
-                            height: 1.2,
-                            fontWeight: FontWeight.w400))
+                    if (_cubit.address != null)
+                      Text(_cubit.address!,
+                          style: theme.textTheme.bodyMedium!.copyWith(
+                              color: theme.colorScheme.onSurface,
+                              height: 1.2,
+                              overflow: TextOverflow.ellipsis,
+                              fontWeight: FontWeight.w400))
                   ]))
         ]);
   }

@@ -10,10 +10,14 @@ class CoreNetworkDioInterceptor implements InterceptorsWrapper {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    // todo: implement check auth token
-    // if(token != null && token.isNotEmpty) {
-    //     options.headers.addAll(<String, Object?>('Authorization': 'Bearer $token'))
-    // }
+    final String url = options.uri.toString();
+    if (url.contains('maps.googleapis.com')) {
+      options.queryParameters.addAll(
+          <String, dynamic>{'key': 'AIzaSyB-FPqfUjjtZgN36TfC3J64FzH6hGI3GVA'});
+    } else {
+      // options.headers['Authorization'] = 'Bearer YOUR_API_KEY';
+    }
+
     return handler.next(options);
   }
 

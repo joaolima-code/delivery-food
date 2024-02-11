@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 
 import '../firebase_options.dart';
 import 'enums/environment.enum.dart';
+import 'external/domain/entity/core.locale.entity.dart';
 import 'injection/dependency.injection.dart';
 
 class CoreConfig {
@@ -18,6 +19,8 @@ class CoreConfig {
   late EnvironmentEnum environment;
   late String baseUrl;
 
+  late CoreLocaleEntity localeUser;
+
   Future<void> initialize(EnvironmentEnum environment) async {
     this.environment = environment;
 
@@ -25,8 +28,6 @@ class CoreConfig {
   }
 
   Future<void> initializeLibrary() async {
-    // await Hive.initFlutter();
-
     await _initFirebase();
 
     await DependencyInjection.instance.initialize();

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
@@ -21,7 +22,6 @@ void main() async {
     await CoreConfig.instance.initializeLibrary();
     runApp(const CoreModule());
   }, (Object error, StackTrace stack) {
-    debugPrint(error.toString());
-    debugPrint(stack.toString());
+    FirebaseCrashlytics.instance.recordError(error, stack);
   });
 }

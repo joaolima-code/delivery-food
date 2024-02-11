@@ -3,6 +3,8 @@
         android:label="delivery_food"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyB-FPqfUjjtZgN36TfC3J64FzH6hGI3GVA"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -29,4 +31,5 @@
             android:value="2" />
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 </manifest>
