@@ -2,37 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../../../core/theme/core.theme.style.dart';
-import '../../../../shared/widgets/image/image.network.widget.dart';
-import '../cubit/restaurant.detail.cubit.dart';
+import '../../../../../core/theme/core.theme.style.dart';
+import '../../../../../shared/widgets/image/image.network.widget.dart';
+import '../cubit/home.restaurant.detail.cubit.dart';
 
-class RestaurantDetailInfoWidget extends StatefulWidget {
-  const RestaurantDetailInfoWidget({super.key});
+class HomeRestaurantDetailInfoWidget extends StatefulWidget {
+  const HomeRestaurantDetailInfoWidget({super.key});
 
   @override
-  State<RestaurantDetailInfoWidget> createState() =>
-      _RestaurantDetailInfoWidgetState();
+  State<HomeRestaurantDetailInfoWidget> createState() =>
+      _HomeRestaurantDetailInfoWidgetState();
 }
 
-class _RestaurantDetailInfoWidgetState
-    extends State<RestaurantDetailInfoWidget> {
-  late RestaurantDetailCubit cubit;
+class _HomeRestaurantDetailInfoWidgetState
+    extends State<HomeRestaurantDetailInfoWidget> {
+  late HomeRestaurantDetailCubit cubit;
 
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    cubit = context.watch<RestaurantDetailCubit>();
+    cubit = context.watch<HomeRestaurantDetailCubit>();
 
     return Column(children: <Widget>[
       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
         Row(
           children: <Widget>[
-            const CircleAvatar(
+            CircleAvatar(
                 radius: 25,
                 child: ClipOval(
                     child: ImageNetworkWidget(
-                        urlImage:
-                            'https://blog.agenciadosite.com.br/wp-content/uploads/2017/01/logo-gallus.jpg',
+                        urlImage: cubit.restaurantEntity.logoPhoto,
                         width: 50,
                         height: 50))),
             Padding(
@@ -41,19 +40,22 @@ class _RestaurantDetailInfoWidgetState
             Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('Restaurante Gallus',
+                  Text(cubit.restaurantEntity.name,
                       style: Theme.of(context).textTheme.titleMedium),
-                  Text('Comida brasileira',
+                  Text(cubit.restaurantEntity.typeFood,
                       style: Theme.of(context)
                           .textTheme
                           .bodySmall!
                           .copyWith(height: 1)),
-                  Text('(34) 99888-6018',
+                  Text(cubit.restaurantEntity.phone,
                       style: Theme.of(context).textTheme.bodySmall)
                 ]),
           ],
         ),
-        const Row(children: <Widget>[Icon(Icons.star), Text('1')])
+        Row(children: <Widget>[
+          const Icon(Icons.star),
+          Text('${cubit.restaurantEntity.review}')
+        ])
       ]),
       theme.bigSpacing,
       Container(
@@ -64,8 +66,8 @@ class _RestaurantDetailInfoWidgetState
           child: SizedBox(
               height: 196,
               child: GoogleMap(
-                  initialCameraPosition: const CameraPosition(
-                      target: LatLng(-18.910758, -48.317527), zoom: 16),
+                  initialCameraPosition: CameraPosition(
+                      target: cubit.restaurantEntity.locale, zoom: 16),
                   zoomControlsEnabled: false,
                   onMapCreated: cubit.onMapCreated,
                   markers: cubit.markers)))

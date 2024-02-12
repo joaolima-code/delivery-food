@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'home.product.response.model.dart';
 import 'home.simpleRestaurant.response.model.dart';
 
 part 'home.restaurant.response.model.g.dart';
@@ -25,6 +26,6 @@ class HomeRestaurantResponseModel extends HomeSimpleRestaurantResponseModel {
   final String phone;
   final String locale;
   final double review;
-  final List<dynamic> foodProducts;
-  final List<dynamic> drinkProducts;
+  final List<HomeProductResponseModel> foodProducts;
+  final List<HomeProductResponseModel> drinkProducts;
 }

@@ -17,8 +17,14 @@ HomeRestaurantResponseModel _$HomeRestaurantResponseModelFromJson(
       phone: json['phone'] as String,
       locale: json['locale'] as String,
       review: (json['review'] as num).toDouble(),
-      foodProducts: json['foodProducts'] as List<dynamic>,
-      drinkProducts: json['drinkProducts'] as List<dynamic>,
+      foodProducts: (json['foodProducts'] as List<dynamic>)
+          .map((e) =>
+              HomeProductResponseModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      drinkProducts: (json['drinkProducts'] as List<dynamic>)
+          .map((e) =>
+              HomeProductResponseModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$HomeRestaurantResponseModelToJson(

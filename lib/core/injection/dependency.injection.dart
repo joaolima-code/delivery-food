@@ -4,7 +4,6 @@ import 'package:get_it/get_it.dart';
 
 import '../../features/auth/auth.injection.dart';
 import '../../features/home/home.injection.dart';
-import '../../features/restaurant/restaurant.injection.dart';
 import '../../features/splash/splash.injection.dart';
 import '../core.config.dart';
 import '../external/core.external.injection.dart';
@@ -32,6 +31,5 @@ class DependencyInjection {
     await SplashInjection.getInstance(injector).build();
     await AuthInjection.getInstance(injector).build();
     await HomeInjection.getInstance(injector).build();
-    await RestaurantInjection.getInstance(injector).build();
   }
 }

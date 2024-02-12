@@ -14,7 +14,7 @@ class AuthLoginUsecase
     final AuthResponseLoginEntity response = await repository.login(params);
 
     if (!response.error) {
-      CoreConfig.instance.token = response.token!;
+      CoreConfig.instance.token = response.token;
     }
 
     return response;

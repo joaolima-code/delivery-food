@@ -6,7 +6,8 @@ import 'data/repository/home.repository.dart';
 import 'domain/repository/home.repository.interface.dart';
 import 'domain/usecase/home.getAllRestaurant.usecase.dart';
 import 'domain/usecase/home.getRestaurant.usecase.dart';
-import 'timeline/cubit/home.timeline.cubit.dart';
+import 'presentation/detail/cubit/home.restaurant.detail.cubit.dart';
+import 'presentation/timeline/cubit/home.timeline.cubit.dart';
 
 class HomeInjection extends InjectionInterface {
   HomeInjection(this.injector);
@@ -31,5 +32,6 @@ class HomeInjection extends InjectionInterface {
     injector.registerLazySingleton(() => HomeGetRestaurantUsecase());
 
     injector.registerFactory(() => HomeTimelineCubit());
+    injector.registerFactory(() => HomeRestaurantDetailCubit());
   }
 }

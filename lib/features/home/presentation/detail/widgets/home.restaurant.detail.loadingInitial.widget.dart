@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
-import '../../../../core/theme/core.theme.style.dart';
+import '../../../../../core/theme/core.theme.style.dart';
 
-class RestaurantDetailLoadingInitialWidget extends StatelessWidget {
-  const RestaurantDetailLoadingInitialWidget({super.key});
+class HomeRestaurantDetailLoadingInitialWidget extends StatelessWidget {
+  const HomeRestaurantDetailLoadingInitialWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../features/auth/presentation/initial/auth.initial.module.dart';
 import '../features/auth/presentation/login/auth.login.module.dart';
 import '../features/auth/presentation/register/auth.register.module.dart';
-import '../features/home/timeline/home.timeline.module.dart';
+import '../features/home/presentation/detail/home.restaurant.detail.module.dart';
+import '../features/home/presentation/timeline/home.timeline.module.dart';
 import '../features/notFound/notFound.module.dart';
-import '../features/restaurant/detail/restaurant.detail.module.dart';
 import '../features/splash/presentation/splash.module.dart';
 
 class CoreRoute {
@@ -35,7 +35,7 @@ class CoreRoute {
         page = _pageRoute(const AuthRegisterModule(), settings);
         break;
       case '/restaurant':
-        page = _pageRoute(const RestaurantDetailModule(), settings);
+        page = _pageRoute(const HomeRestaurantDetailModule(), settings);
         break;
       default:
         page = _pageRoute(const NotFoundModule(), settings);

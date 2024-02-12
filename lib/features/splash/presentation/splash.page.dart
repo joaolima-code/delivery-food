@@ -4,7 +4,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import '../../../core/util/core.navigator.util.dart';
 import '../../auth/presentation/initial/auth.initial.module.dart';
-import '../../home/timeline/home.timeline.module.dart';
+import '../../home/presentation/timeline/home.timeline.module.dart';
 import 'cubit/splash.cubit.dart';
 import 'cubit/splash.state.dart';
 

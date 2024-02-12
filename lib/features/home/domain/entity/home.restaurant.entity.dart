@@ -1,4 +1,9 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../../../../core/util/helpers/core.util.latLong.helper.dart';
+import '../../data/model/home.product.response.model.dart';
 import '../../data/model/home.restaurant.response.model.dart';
+import 'home.product.entity.dart';
 import 'home.simpleRestaurant.entity.dart';
 
 class HomeRestaurantEntity extends HomeSimpleRestaurantEntity {
@@ -16,20 +21,27 @@ class HomeRestaurantEntity extends HomeSimpleRestaurantEntity {
 
   factory HomeRestaurantEntity.fromModel(HomeRestaurantResponseModel model) =>
       HomeRestaurantEntity(
-          id: model.id,
-          name: model.name,
-          typeFood: model.typeFood,
-          logoPhoto: model.logoPhoto,
-          backgroundPhoto: model.backgroundPhoto,
-          locale: model.locale,
-          phone: model.phone,
-          review: model.review,
-          foodProducts: model.foodProducts,
-          drinkProducts: model.drinkProducts);
+        id: model.id,
+        name: model.name,
+        typeFood: model.typeFood,
+        logoPhoto: model.logoPhoto,
+        backgroundPhoto: model.backgroundPhoto,
+        locale: CoreUtilLatLongHelper.extractLatLng(model.locale),
+        phone: model.phone,
+        review: model.review,
+        foodProducts: model.foodProducts
+            .map((HomeProductResponseModel model) =>
+                HomeProductEntity.fromModel(model))
+            .toList(),
+        drinkProducts: model.drinkProducts
+            .map((HomeProductResponseModel model) =>
+                HomeProductEntity.fromModel(model))
+            .toList(),
+      );
 
   final String phone;
-  final String locale;
+  final LatLng locale;
   final double review;
-  final List<dynamic> foodProducts;
-  final List<dynamic> drinkProducts;
+  final List<HomeProductEntity> foodProducts;
+  final List<HomeProductEntity> drinkProducts;
 }

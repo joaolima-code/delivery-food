@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/theme/core.theme.style.dart';
-import '../../../../shared/widgets/image/image.network.widget.dart';
+import '../../../../../core/theme/core.theme.style.dart';
+import '../../../../../shared/widgets/image/image.network.widget.dart';
+import '../../../domain/entity/home.product.entity.dart';
 
-class RestaurantDetailCardProductWidget extends StatelessWidget {
-  const RestaurantDetailCardProductWidget({super.key});
+class HomeRestaurantDetailCardProductWidget extends StatelessWidget {
+  const HomeRestaurantDetailCardProductWidget({
+    required this.productEntity,
+    super.key,
+  });
+
+  final HomeProductEntity productEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +23,13 @@ class RestaurantDetailCardProductWidget extends StatelessWidget {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
             child: Column(children: <Widget>[
-              const ClipRRect(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
+              ClipRRect(
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(8)),
                   child: ImageNetworkWidget(
-                      urlImage:
-                          'https://www.gastronomia.com.br/wp-content/uploads/2023/07/comida-brasileira-10-pratos-tipicos-famosos-do-brasil.jpg',
+                      urlImage: productEntity.photo,
                       boxFit: BoxFit.cover,
-                      boxConstraints: BoxConstraints(maxHeight: 130))),
+                      boxConstraints: const BoxConstraints(maxHeight: 130))),
               Container(
                   margin:
                       const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
@@ -31,7 +37,7 @@ class RestaurantDetailCardProductWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text('Strogonoff',
+                        Text(productEntity.name,
                             style: theme.textTheme.titleSmall!
                                 .copyWith(height: 1.2)),
                         Row(
@@ -40,7 +46,7 @@ class RestaurantDetailCardProductWidget extends StatelessWidget {
                             children: <Widget>[
                               Expanded(
                                   flex: 7,
-                                  child: Text('Arroz, batata frita e carne',
+                                  child: Text(productEntity.description,
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
                                       style: theme.textTheme.bodySmall!
@@ -48,7 +54,8 @@ class RestaurantDetailCardProductWidget extends StatelessWidget {
                               theme.smallSpacingHorizontal,
                               Expanded(
                                   flex: 3,
-                                  child: Text(r'R$200,20',
+                                  child: Text(
+                                      'R\$${productEntity.price.toStringAsFixed(2)}',
                                       style: theme.textTheme.labelSmall!
                                           .copyWith(
                                               color: theme.colorScheme.error)))

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/util/core.navigator.util.dart';
 import '../../../../shared/widgets/buttons/back.button.widget.dart';
 import '../../../../shared/widgets/snackBar/snackBar.widget.dart';
-import '../../../home/timeline/home.timeline.module.dart';
+import '../../../home/presentation/timeline/home.timeline.module.dart';
 import '../login/auth.login.module.dart';
 import 'cubit/auth.register.cubit.dart';
 import 'widgets/auth.register.form.widget.dart';

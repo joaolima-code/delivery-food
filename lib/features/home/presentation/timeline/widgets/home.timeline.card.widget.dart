@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/theme/core.theme.style.dart';
-import '../../../../core/util/core.navigator.util.dart';
-import '../../../../shared/widgets/image/image.network.widget.dart';
-import '../../../restaurant/detail/restaurant.detail.args.dart';
-import '../../../restaurant/detail/restaurant.detail.module.dart';
+import '../../../../../core/theme/core.theme.style.dart';
+import '../../../../../core/util/core.navigator.util.dart';
+import '../../../../../shared/widgets/image/image.network.widget.dart';
+import '../../../domain/entity/home.simpleRestaurant.entity.dart';
+import '../../detail/home.restaurant.detail.args.dart';
+import '../../detail/home.restaurant.detail.module.dart';
 
 class HomeTimelineCardWidget extends StatelessWidget {
-  const HomeTimelineCardWidget({super.key});
+  const HomeTimelineCardWidget({
+    required this.restaurantEntity,
+    super.key,
+  });
+
+  final HomeSimpleRestaurantEntity restaurantEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -22,32 +28,33 @@ class HomeTimelineCardWidget extends StatelessWidget {
             radius: 16,
             onTap: () => CoreNavigatorUtil.instance.startPage(
                 context: context,
-                route: RestaurantDetailModule.route,
-                arguments: RestaurantDetailArgs(idRestaurant: 1)),
+                route: HomeRestaurantDetailModule.route,
+                arguments: HomeRestaurantDetailArgs(
+                    idRestaurant: restaurantEntity.id,
+                    nameRestaurant: restaurantEntity.name)),
             child: Stack(children: <Widget>[
               Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    const ClipRRect(
-                        borderRadius:
-                            BorderRadius.vertical(top: Radius.circular(16)),
+                    ClipRRect(
+                        borderRadius: const BorderRadius.vertical(
+                            top: Radius.circular(16)),
                         child: ImageNetworkWidget(
-                            urlImage:
-                                'https://www.gastronomia.com.br/wp-content/uploads/2023/07/comida-brasileira-10-pratos-tipicos-famosos-do-brasil.jpg',
+                            urlImage: restaurantEntity.backgroundPhoto,
                             boxFit: BoxFit.fitWidth,
-                            boxConstraints: BoxConstraints(maxHeight: 180))),
+                            boxConstraints:
+                                const BoxConstraints(maxHeight: 180))),
                     Align(
                         alignment: Alignment.bottomCenter,
                         child: Padding(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 8, horizontal: 16),
                             child: Row(children: <Widget>[
-                              const CircleAvatar(
+                              CircleAvatar(
                                   radius: 25,
                                   child: ClipOval(
                                       child: ImageNetworkWidget(
-                                          urlImage:
-                                              'https://blog.agenciadosite.com.br/wp-content/uploads/2017/01/logo-gallus.jpg',
+                                          urlImage: restaurantEntity.logoPhoto,
                                           width: 50,
                                           height: 50))),
                               Padding(
@@ -57,11 +64,11 @@ class HomeTimelineCardWidget extends StatelessWidget {
                               Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-                                    Text('Restaurante Gallus',
+                                    Text(restaurantEntity.name,
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleMedium),
-                                    Text('Comida brasileira',
+                                    Text(restaurantEntity.typeFood,
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyMedium!

@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 
-import 'restaurant.detail.cardProduct.widget.dart';
+import '../../../domain/entity/home.product.entity.dart';
+import 'home.restaurant.detail.cardProduct.widget.dart';
 
-class RestaurantDetailListProductWidget extends StatelessWidget {
-  RestaurantDetailListProductWidget({
+class HomeRestaurantDetailListProductWidget extends StatelessWidget {
+  HomeRestaurantDetailListProductWidget({
     required this.title,
+    required this.listProduct,
     super.key,
   });
 
   final String title;
+  final List<HomeProductEntity> listProduct;
 
   final ScrollController _listScrollController = ScrollController();
 
@@ -26,9 +29,11 @@ class RestaurantDetailListProductWidget extends StatelessWidget {
                   shrinkWrap: true,
                   controller: _listScrollController,
                   scrollDirection: Axis.horizontal,
-                  itemCount: 6,
+                  itemCount: listProduct.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return const RestaurantDetailCardProductWidget();
+                    return HomeRestaurantDetailCardProductWidget(
+                      productEntity: listProduct[index],
+                    );
                   })),
         ]);
   }
