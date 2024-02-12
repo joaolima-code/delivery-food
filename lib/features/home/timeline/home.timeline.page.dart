@@ -24,10 +24,14 @@ class _HomeTimelinePageState extends State<HomeTimelinePage> {
         appBar: const PreferredSize(
             preferredSize: Size.fromHeight(62),
             child: HomeTimelineAppBarWidget()),
-        body: BlocListener<HomeTimelineCubit, HomeTimelineState>(
+        body: BlocConsumer<HomeTimelineCubit, HomeTimelineState>(
             listener: (BuildContext context, HomeTimelineState state) {
-              // TODO: implement listener
-            },
-            child: const HomeTimelineMainContentWidget()));
+          // TODO: implement listener
+        }, builder: (BuildContext context, HomeTimelineState state) {
+          if (state is HomeInitial) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          return const HomeTimelineMainContentWidget();
+        }));
   }
 }

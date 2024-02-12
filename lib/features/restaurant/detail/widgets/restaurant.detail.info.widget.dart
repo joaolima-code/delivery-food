@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../../core/theme/core.theme.style.dart';
 import '../../../../shared/widgets/image/image.network.widget.dart';
+import '../cubit/restaurant.detail.cubit.dart';
 
 class RestaurantDetailInfoWidget extends StatefulWidget {
   const RestaurantDetailInfoWidget({super.key});
@@ -13,9 +16,12 @@ class RestaurantDetailInfoWidget extends StatefulWidget {
 
 class _RestaurantDetailInfoWidgetState
     extends State<RestaurantDetailInfoWidget> {
+  late RestaurantDetailCubit cubit;
+
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
+    cubit = context.watch<RestaurantDetailCubit>();
 
     return Column(children: <Widget>[
       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
@@ -51,12 +57,18 @@ class _RestaurantDetailInfoWidgetState
       ]),
       theme.bigSpacing,
       Container(
-        width: double.infinity,
-        height: 200,
-        decoration: BoxDecoration(
-            color: Colors.green.shade100,
-            borderRadius: BorderRadius.circular(16)),
-      ),
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+              border: Border.all(color: Colors.green.shade100, width: 5),
+              borderRadius: BorderRadius.circular(16)),
+          child: SizedBox(
+              height: 196,
+              child: GoogleMap(
+                  initialCameraPosition: const CameraPosition(
+                      target: LatLng(-18.910758, -48.317527), zoom: 16),
+                  zoomControlsEnabled: false,
+                  onMapCreated: cubit.onMapCreated,
+                  markers: cubit.markers)))
     ]);
   }
 }
