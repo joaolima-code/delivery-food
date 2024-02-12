@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../features/auth/initial/auth.initial.module.dart';
-import '../features/auth/login/auth.login.module.dart';
-import '../features/auth/register/auth.register.module.dart';
+import '../features/auth/presentation/initial/auth.initial.module.dart';
+import '../features/auth/presentation/login/auth.login.module.dart';
+import '../features/auth/presentation/register/auth.register.module.dart';
 import '../features/home/timeline/home.timeline.module.dart';
 import '../features/notFound/notFound.module.dart';
 import '../features/restaurant/detail/restaurant.detail.module.dart';

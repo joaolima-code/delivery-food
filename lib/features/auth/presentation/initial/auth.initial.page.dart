@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-import '../../../core/util/core.navigator.util.dart';
-import '../../../shared/assets/images/image.path.dart';
-import '../../../shared/widgets/buttons/primary.button.widget.dart';
+import '../../../../core/util/core.navigator.util.dart';
+import '../../../../shared/assets/images/image.path.dart';
+import '../../../../shared/widgets/buttons/primary.button.widget.dart';
 import '../login/auth.login.module.dart';
 
 class AuthInitialPage extends StatefulWidget {

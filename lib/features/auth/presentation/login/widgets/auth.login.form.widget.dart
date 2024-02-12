@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/util/core.navigator.util.dart';
-import '../../../../core/util/validators/core.util.validatorString.dart';
-import '../../../../shared/widgets/buttons/primary.button.widget.dart';
-import '../../../../shared/widgets/buttons/transparent.button.widget.dart';
-import '../../../../shared/widgets/forms/form.input.widget.dart';
+import '../../../../../core/util/core.navigator.util.dart';
+import '../../../../../core/util/validators/core.util.validatorString.dart';
+import '../../../../../shared/widgets/buttons/primary.button.widget.dart';
+import '../../../../../shared/widgets/buttons/transparent.button.widget.dart';
+import '../../../../../shared/widgets/forms/form.input.widget.dart';
 import '../../register/auth.register.module.dart';
 import '../cubit/auth.login.cubit.dart';
 
@@ -66,10 +66,15 @@ class _AuthLoginFormWidgetState extends State<AuthLoginFormWidget> {
                     }),
                 const SizedBox(height: 16),
                 PrimaryButtonWidget(
-                  text: 'Entrar',
-                  isLoading: state is Loading,
-                  onPressed: () {},
-                ),
+                    text: 'Entrar',
+                    isLoading: state is Loading,
+                    onPressed: () {
+                      final bool? isValidFields =
+                          cubit.formKey.currentState?.validate();
+                      if (isValidFields!) {
+                        cubit.onSubmitted();
+                      }
+                    }),
                 const SizedBox(height: 8),
                 TransparentButtonWidget(
                     text: 'Cadastrar',

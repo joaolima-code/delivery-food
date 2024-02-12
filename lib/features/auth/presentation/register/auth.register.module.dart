@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/core.config.dart';
+import '../../../../core/core.config.dart';
 import 'auth.register.page.dart';
 import 'cubit/auth.register.cubit.dart';
 

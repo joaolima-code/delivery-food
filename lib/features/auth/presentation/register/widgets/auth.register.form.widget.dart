@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/util/validators/core.util.validatorString.dart';
-import '../../../../shared/widgets/buttons/primary.button.widget.dart';
-import '../../../../shared/widgets/forms/form.input.widget.dart';
+import '../../../../../core/util/validators/core.util.validatorString.dart';
+import '../../../../../shared/widgets/buttons/primary.button.widget.dart';
+import '../../../../../shared/widgets/forms/form.input.widget.dart';
 import '../cubit/auth.register.cubit.dart';
 
 class AuthRegisterFormWidget extends StatefulWidget {
@@ -78,7 +78,13 @@ class _AuthRegisterFormWidgetState extends State<AuthRegisterFormWidget> {
                 PrimaryButtonWidget(
                     text: 'Cadastrar',
                     isLoading: state is Loading,
-                    onPressed: () {})
+                    onPressed: () {
+                      final bool? isValidFields =
+                          cubit.formKey.currentState?.validate();
+                      if (isValidFields!) {
+                        cubit.onSubmitted();
+                      }
+                    })
               ]));
     });
   }

@@ -3,6 +3,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
+import '../features/auth/domain/entity/auth.user.entity.dart';
 import '../firebase_options.dart';
 import 'enums/environment.enum.dart';
 import 'external/domain/entity/core.locale.entity.dart';
@@ -20,6 +21,8 @@ class CoreConfig {
   late String baseUrl;
 
   late CoreLocaleEntity localeUser;
+  late String token;
+  late AuthUserEntity user;
 
   Future<void> initialize(EnvironmentEnum environment) async {
     this.environment = environment;
