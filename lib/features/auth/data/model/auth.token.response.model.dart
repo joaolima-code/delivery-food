@@ -6,8 +6,9 @@ part 'auth.token.response.model.g.dart';
 class AuthTokenResponseModel {
   AuthTokenResponseModel({this.token, this.status});
 
+  factory AuthTokenResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$AuthTokenResponseModelFromJson(json);
+
   final String? token;
   final String? status;
-
-  Map<String, dynamic> toJson() => _$AuthTokenResponseModelToJson(this);
 }
