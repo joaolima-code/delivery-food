@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/core.config.dart';
 import '../../../core/theme/core.theme.style.dart';
+import '../../../core/util/core.navigator.util.dart';
+import '../../auth/presentation/initial/auth.initial.module.dart';
 
 class HomeDrawerWidget extends StatefulWidget {
   const HomeDrawerWidget({super.key});
@@ -10,12 +13,9 @@ class HomeDrawerWidget extends StatefulWidget {
 }
 
 class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
-  // late ManageOfferTimelineCubit cubit;
-
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    // cubit = context.watch<ManageOfferTimelineCubit>();
 
     return Drawer(
         backgroundColor: theme.colorScheme.onPrimary,
@@ -49,7 +49,7 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
                             theme.spacingHorizontal,
                             Flexible(
                                 flex: 2,
-                                child: Text('Nome do usuario',
+                                child: Text(CoreConfig.instance.user.name,
                                     style: theme.textTheme.titleMedium!
                                         .copyWith(
                                             color: theme.colorScheme.onPrimary),
@@ -59,8 +59,13 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
                         ],
                       ))),
               Column(children: <Widget>[
-                buildListTile(theme,
-                    icon: Icons.logout, title: 'Sair', onTap: () {})
+                buildListTile(theme, icon: Icons.logout, title: 'Sair',
+                    onTap: () {
+                  CoreConfig.instance.token = null;
+
+                  CoreNavigatorUtil.instance.startPageWithNewBackStack(
+                      context: context, route: AuthInitialModule.route);
+                })
               ])
             ]));
   }

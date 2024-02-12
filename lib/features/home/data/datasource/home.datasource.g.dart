@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'auth.datasource.dart';
+part of 'home.datasource.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'auth.datasource.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _AuthDatasource implements AuthDatasource {
-  _AuthDatasource(
+class _HomeDatasource implements HomeDatasource {
+  _HomeDatasource(
     this._dio, {
     this.baseUrl,
   });
@@ -19,22 +19,21 @@ class _AuthDatasource implements AuthDatasource {
   String? baseUrl;
 
   @override
-  Future<AuthTokenResponseModel> login(
-      AuthTokenRequestModel requestModel) async {
+  Future<List<HomeSimpleRestaurantResponseModel>> getAllRestaurant(
+      String query) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'query': query};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(requestModel.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<AuthTokenResponseModel>(Options(
-      method: 'POST',
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<List<HomeSimpleRestaurantResponseModel>>(Options(
+      method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/auth',
+              '/restaurant',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -43,27 +42,28 @@ class _AuthDatasource implements AuthDatasource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = AuthTokenResponseModel.fromJson(_result.data!);
+    var value = _result.data!
+        .map((dynamic i) => HomeSimpleRestaurantResponseModel.fromJson(
+            i as Map<String, dynamic>))
+        .toList();
     return value;
   }
 
   @override
-  Future<AuthUserResponseModel> register(
-      AuthRegisterUserRequestModel requestModel) async {
+  Future<HomeRestaurantResponseModel> getOneRestaurant(int idRestaurant) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(requestModel.toJson());
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<AuthUserResponseModel>(Options(
+        _setStreamType<HomeRestaurantResponseModel>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/user',
+              '/restaurant/${idRestaurant}',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -72,7 +72,7 @@ class _AuthDatasource implements AuthDatasource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = AuthUserResponseModel.fromJson(_result.data!);
+    final value = HomeRestaurantResponseModel.fromJson(_result.data!);
     return value;
   }
 

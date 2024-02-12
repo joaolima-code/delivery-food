@@ -1,6 +1,11 @@
 import 'package:get_it/get_it.dart';
 
 import '../../core/injection/injection.interface.dart';
+import 'data/datasource/home.datasource.dart';
+import 'data/repository/home.repository.dart';
+import 'domain/repository/home.repository.interface.dart';
+import 'domain/usecase/home.getAllRestaurant.usecase.dart';
+import 'domain/usecase/home.getRestaurant.usecase.dart';
 import 'timeline/cubit/home.timeline.cubit.dart';
 
 class HomeInjection extends InjectionInterface {
@@ -18,6 +23,13 @@ class HomeInjection extends InjectionInterface {
 
   @override
   Future<void> build() async {
+    injector.registerLazySingleton(() => HomeDatasource(injector()));
+    injector
+        .registerLazySingleton<HomeRepositoryInterface>(() => HomeRepository());
+
+    injector.registerLazySingleton(() => HomeGetAllRestaurantUsecase());
+    injector.registerLazySingleton(() => HomeGetRestaurantUsecase());
+
     injector.registerFactory(() => HomeTimelineCubit());
   }
 }

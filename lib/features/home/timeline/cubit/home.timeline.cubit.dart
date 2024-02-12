@@ -36,4 +36,6 @@ class HomeTimelineCubit extends Cubit<HomeTimelineState> {
 
     return emit(Rebuild());
   }
+
+  Future<void> getListRestaurant() async {}
 }

@@ -6,16 +6,16 @@ part of 'auth.user.response.model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AuthUserResponseRequestModel _$AuthUserResponseRequestModelFromJson(
+AuthUserResponseModel _$AuthUserResponseModelFromJson(
         Map<String, dynamic> json) =>
-    AuthUserResponseRequestModel(
+    AuthUserResponseModel(
       email: json['email'] as String,
       id: json['id'] as int,
       name: json['name'] as String,
     );
 
-Map<String, dynamic> _$AuthUserResponseRequestModelToJson(
-        AuthUserResponseRequestModel instance) =>
+Map<String, dynamic> _$AuthUserResponseModelToJson(
+        AuthUserResponseModel instance) =>
     <String, dynamic>{
       'name': instance.name,
       'email': instance.email,

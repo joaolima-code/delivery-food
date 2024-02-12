@@ -36,7 +36,7 @@ class AuthRepository implements AuthRepositoryInterface {
   @override
   Future<AuthUserEntity?> register(AuthRegisterUserEntity register) async {
     try {
-      final AuthUserResponseRequestModel response = await _datasource.register(
+      final AuthUserResponseModel response = await _datasource.register(
           AuthRegisterUserRequestModel(
               email: register.email,
               password: register.password,

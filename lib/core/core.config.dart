@@ -21,7 +21,7 @@ class CoreConfig {
   late String baseUrl;
 
   late CoreLocaleEntity localeUser;
-  late String token;
+  late String? token = null;
   late AuthUserEntity user;
 
   Future<void> initialize(EnvironmentEnum environment) async {
