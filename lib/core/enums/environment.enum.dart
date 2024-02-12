@@ -16,9 +16,9 @@ extension EnvironmentEnumExtension on EnvironmentEnum {
   String get baseUrl {
     switch (this) {
       case EnvironmentEnum.release:
-        return 'https://localhost:3000';
+        return 'http://10.0.2.2:3000';
       case EnvironmentEnum.production:
-        return 'https://localhost:3000';
+        return 'http://10.0.2.2:3000';
     }
   }
 

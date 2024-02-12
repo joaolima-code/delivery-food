@@ -37,20 +37,27 @@ class _HomeTimelineMainContentWidgetState
                           padding: EdgeInsets.symmetric(horizontal: 8),
                           child: Icon(Icons.search)),
                       suffixIcon: state is Loading
-                          ? const CircularProgressIndicator()
+                          ? const Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 8),
+                              child: CircularProgressIndicator())
                           : null,
                       textInputType: TextInputType.text),
                   theme.spacing,
-                  Text('Restaurantes', style: theme.textTheme.titleLarge),
-                  theme.smallSpacing,
-                  ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: cubit.listRestaurant.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return HomeTimelineCardWidget(
-                            restaurantEntity: cubit.listRestaurant[index]);
-                      })
+                  if (cubit.listRestaurant.isNotEmpty) ...<Widget>[
+                    Text('Restaurantes', style: theme.textTheme.titleLarge),
+                    theme.smallSpacing,
+                    ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: cubit.listRestaurant.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return HomeTimelineCardWidget(
+                              restaurantEntity: cubit.listRestaurant[index]);
+                        })
+                  ] else ...<Widget>[
+                    Center(child: Text('error'))
+                  ]
                 ]));
       },
     );
