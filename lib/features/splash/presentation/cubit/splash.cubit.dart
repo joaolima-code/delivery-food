@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 
+import '../../../../core/core.config.dart';
 import 'splash.state.dart';
 
 class SplashCubit extends Cubit<SplashState> {
@@ -14,7 +15,11 @@ class SplashCubit extends Cubit<SplashState> {
   }
 
   Future<void> checkSessionStatus() async {
-    emit(HomeState());
+    if (CoreConfig.instance.token != null) {
+      return emit(HomeState());
+    } else {
+      return emit(AuthenticateState());
+    }
   }
 
   Future<void> _checkPermissionLocale() async {

@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 
+import '../core.config.dart';
+
 class CoreNetworkDioInterceptor implements InterceptorsWrapper {
   CoreNetworkDioInterceptor();
 
@@ -15,7 +17,10 @@ class CoreNetworkDioInterceptor implements InterceptorsWrapper {
       options.queryParameters.addAll(
           <String, dynamic>{'key': 'AIzaSyB-FPqfUjjtZgN36TfC3J64FzH6hGI3GVA'});
     } else {
-      // options.headers['Authorization'] = 'Bearer YOUR_API_KEY';
+      if (CoreConfig.instance.token != null) {
+        options.headers['Authorization'] =
+            'Bearer ${CoreConfig.instance.token}';
+      }
     }
 
     return handler.next(options);
