@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 
+import '../../../../core/bdLocal/domain/usecase/core.get.token.usecase.dart';
 import '../../../../core/core.config.dart';
 import 'splash.state.dart';
 
@@ -9,13 +10,16 @@ class SplashCubit extends Cubit<SplashState> {
     initState();
   }
 
+  final CoreGetTokenUsecase _getTokenUsecase =
+      CoreConfig.injector<CoreGetTokenUsecase>();
+
   Future<void> initState() async {
     await _checkPermissionLocale();
     checkSessionStatus();
   }
 
   Future<void> checkSessionStatus() async {
-    if (CoreConfig.instance.token != null) {
+    if (await _getTokenUsecase.call(null) != null) {
       return emit(HomeState());
     } else {
       return emit(AuthenticateState());

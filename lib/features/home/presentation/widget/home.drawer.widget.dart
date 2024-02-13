@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/bdLocal/domain/usecase/core.clear.usecase.dart';
+import '../../../../core/bdLocal/domain/usecase/core.get.username.usecase.dart';
 import '../../../../core/core.config.dart';
 import '../../../../core/theme/core.theme.style.dart';
 import '../../../../core/util/core.navigator.util.dart';
@@ -13,6 +15,22 @@ class HomeDrawerWidget extends StatefulWidget {
 }
 
 class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
+  late String? username;
+
+  final CoreGetUsernameUsecase usernameUsecase =
+      CoreConfig.injector<CoreGetUsernameUsecase>();
+  final CoreClearUsecase clearUsecase = CoreConfig.injector<CoreClearUsecase>();
+
+  @override
+  void initState() {
+    initName();
+    super.initState();
+  }
+
+  Future<void> initName() async {
+    username = await usernameUsecase.call(null);
+  }
+
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
@@ -49,7 +67,7 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
                             theme.spacingHorizontal,
                             Flexible(
                                 flex: 2,
-                                child: Text(CoreConfig.instance.user.name,
+                                child: Text(username ?? '',
                                     style: theme.textTheme.titleMedium!
                                         .copyWith(
                                             color: theme.colorScheme.onPrimary),
@@ -60,11 +78,13 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
                       ))),
               Column(children: <Widget>[
                 buildListTile(theme, icon: Icons.logout, title: 'Sair',
-                    onTap: () {
-                  CoreConfig.instance.token = null;
+                    onTap: () async {
+                  await clearUsecase.call(null);
 
-                  CoreNavigatorUtil.instance.startPageWithNewBackStack(
-                      context: context, route: AuthInitialModule.route);
+                  if (mounted) {
+                    CoreNavigatorUtil.instance.startPageWithNewBackStack(
+                        context: context, route: AuthInitialModule.route);
+                  }
                 })
               ])
             ]));

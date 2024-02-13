@@ -2,9 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-import '../features/auth/domain/entity/auth.user.entity.dart';
 import '../firebase_options.dart';
+import 'bdLocal/data/datasource/core.session.local.datasource.dart';
 import 'enums/environment.enum.dart';
 import 'external/domain/entity/core.locale.entity.dart';
 import 'injection/dependency.injection.dart';
@@ -21,8 +22,6 @@ class CoreConfig {
   late String baseUrl;
 
   late CoreLocaleEntity localeUser;
-  late String? token = null;
-  late AuthUserEntity user;
 
   Future<void> initialize(EnvironmentEnum environment) async {
     this.environment = environment;
@@ -33,7 +32,11 @@ class CoreConfig {
   Future<void> initializeLibrary() async {
     await _initFirebase();
 
+    await Hive.initFlutter();
     await DependencyInjection.instance.initialize();
+    await DependencyInjection.instance.injector
+        .get<CoreSessionLocalDatasource>()
+        .initialize();
   }
 
   Future<void> _initFirebase() async {
