@@ -50,20 +50,20 @@ class _HomeDatasource implements HomeDatasource {
   }
 
   @override
-  Future<HomeRestaurantResponseModel> getOneRestaurant(int idRestaurant) async {
+  Future<HomeRestaurantResponseModel> getOneRestaurant(int id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HomeRestaurantResponseModel>(Options(
-      method: 'POST',
+      method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/restaurant/${idRestaurant}',
+              '/restaurant/${id}',
               queryParameters: queryParameters,
               data: _data,
             )

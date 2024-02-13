@@ -15,7 +15,7 @@ class HomeSimpleRestaurantEntity {
         name: model.name,
         typeFood: model.typeFood,
         logoPhoto: model.logoPhoto,
-        backgroundPhoto: model.backgroundPhoto,
+        backgroundPhoto: model.backgroudPhoto,
       );
 
   final int id;

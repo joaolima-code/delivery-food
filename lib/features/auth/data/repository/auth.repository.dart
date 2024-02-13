@@ -50,4 +50,18 @@ class AuthRepository implements AuthRepositoryInterface {
       return null;
     }
   }
+
+  @override
+  Future<AuthUserEntity?> userMe() async {
+    try {
+      final AuthUserResponseModel response = await _datasource.userMe();
+
+      final AuthUserEntity entityResponse = AuthUserEntity(
+          id: response.id, name: response.name, email: response.email);
+
+      return entityResponse;
+    } on DioException catch (_) {
+      return null;
+    }
+  }
 }

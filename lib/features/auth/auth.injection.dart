@@ -4,6 +4,7 @@ import '../../core/injection/injection.interface.dart';
 import 'data/datasource/auth.datasource.dart';
 import 'data/repository/auth.repository.dart';
 import 'domain/repository/auth.repository.interface.dart';
+import 'domain/usecase/auth.getUserMe.usecase.dart';
 import 'domain/usecase/auth.login.usecase.dart';
 import 'domain/usecase/auth.register.usecase.dart';
 import 'presentation/login/cubit/auth.login.cubit.dart';
@@ -30,6 +31,7 @@ class AuthInjection extends InjectionInterface {
 
     injector.registerLazySingleton(() => AuthLoginUsecase());
     injector.registerLazySingleton(() => AuthRegisterUsecase());
+    injector.registerLazySingleton(() => AuthGetUserMeUsecase());
 
     injector.registerFactory(() => AuthLoginCubit());
     injector.registerFactory(() => AuthRegisterCubit());

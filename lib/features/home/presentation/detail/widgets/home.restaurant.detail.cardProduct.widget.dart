@@ -24,12 +24,11 @@ class HomeRestaurantDetailCardProductWidget extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
             child: Column(children: <Widget>[
               ClipRRect(
-                  borderRadius:
-                      const BorderRadius.vertical(top: Radius.circular(8)),
+                  borderRadius: const BorderRadius.all(Radius.circular(8)),
                   child: ImageNetworkWidget(
                       urlImage: productEntity.photo,
-                      boxFit: BoxFit.cover,
-                      boxConstraints: const BoxConstraints(maxHeight: 130))),
+                      boxFit: BoxFit.fitWidth,
+                      boxConstraints: const BoxConstraints(maxHeight: 90))),
               Container(
                   margin:
                       const EdgeInsets.symmetric(vertical: 6, horizontal: 10),

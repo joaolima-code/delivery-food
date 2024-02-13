@@ -9,7 +9,7 @@ class HomeSimpleRestaurantResponseModel {
     required this.name,
     required this.typeFood,
     required this.logoPhoto,
-    required this.backgroundPhoto,
+    required this.backgroudPhoto,
   });
 
   factory HomeSimpleRestaurantResponseModel.fromJson(
@@ -20,5 +20,5 @@ class HomeSimpleRestaurantResponseModel {
   final String name;
   final String typeFood;
   final String logoPhoto;
-  final String backgroundPhoto;
+  final String backgroudPhoto;
 }

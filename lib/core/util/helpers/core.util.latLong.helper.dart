@@ -8,12 +8,14 @@ class CoreUtilLatLongHelper {
   static CoreUtilLatLongHelper get instance => _singleton;
 
   static LatLng extractLatLng(String input) {
-    final RegExp regex = RegExp(r'([-+]?\d*\.\d+|\d+), ([-+]?\d*\.\d+|\d+)');
-    final Match? match = regex.firstMatch(input);
+    final int commaIndex = input.indexOf(',');
 
-    if (match != null) {
-      final double latitude = double.parse(match.group(1)!);
-      final double longitude = double.parse(match.group(2)!);
+    if (commaIndex != -1) {
+      final double latitude =
+          double.parse(input.substring(0, commaIndex).trim());
+      final double longitude =
+          double.parse(input.substring(commaIndex + 1).trim());
+
       return LatLng(latitude, longitude);
     }
 

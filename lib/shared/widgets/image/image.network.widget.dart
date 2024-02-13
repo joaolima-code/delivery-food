@@ -26,7 +26,7 @@ class ImageNetworkWidget extends StatelessWidget {
             constraints: boxConstraints,
             width: width,
             height: height,
-            color: Theme.of(context).colorScheme.secondary,
+            color: Colors.transparent,
             child: checkImage(context)));
   }
 

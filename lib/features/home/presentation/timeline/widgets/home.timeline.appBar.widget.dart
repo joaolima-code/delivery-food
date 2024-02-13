@@ -38,7 +38,7 @@ class _HomeTimelineAppBarWidgetState extends State<HomeTimelineAppBarWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      'Ola fred, buscando restaurantes perto de:',
+                      'Buscando restaurantes perto de:',
                       style: theme.textTheme.titleSmall!
                           .copyWith(color: theme.colorScheme.onPrimary),
                     ),

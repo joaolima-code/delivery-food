@@ -25,7 +25,7 @@ class HomeRestaurantEntity extends HomeSimpleRestaurantEntity {
         name: model.name,
         typeFood: model.typeFood,
         logoPhoto: model.logoPhoto,
-        backgroundPhoto: model.backgroundPhoto,
+        backgroundPhoto: model.backgroudPhoto,
         locale: CoreUtilLatLongHelper.extractLatLng(model.locale),
         phone: model.phone,
         review: model.review,

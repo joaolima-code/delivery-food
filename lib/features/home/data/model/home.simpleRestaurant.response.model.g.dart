@@ -13,7 +13,7 @@ HomeSimpleRestaurantResponseModel _$HomeSimpleRestaurantResponseModelFromJson(
       name: json['name'] as String,
       typeFood: json['typeFood'] as String,
       logoPhoto: json['logoPhoto'] as String,
-      backgroundPhoto: json['backgroundPhoto'] as String,
+      backgroudPhoto: json['backgroudPhoto'] as String,
     );
 
 Map<String, dynamic> _$HomeSimpleRestaurantResponseModelToJson(
@@ -23,5 +23,5 @@ Map<String, dynamic> _$HomeSimpleRestaurantResponseModelToJson(
       'name': instance.name,
       'typeFood': instance.typeFood,
       'logoPhoto': instance.logoPhoto,
-      'backgroundPhoto': instance.backgroundPhoto,
+      'backgroudPhoto': instance.backgroudPhoto,
     };

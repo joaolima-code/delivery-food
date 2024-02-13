@@ -19,4 +19,7 @@ abstract class AuthDatasource {
   @POST('/user')
   Future<AuthUserResponseModel> register(
       @Body() AuthRegisterUserRequestModel requestModel);
+
+  @GET('/me')
+  Future<AuthUserResponseModel> userMe();
 }

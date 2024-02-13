@@ -15,8 +15,6 @@ abstract class HomeDatasource {
     @Query('query') String query,
   );
 
-  @POST('/restaurant/{id}')
-  Future<HomeRestaurantResponseModel> getOneRestaurant(
-    @Path('id') int idRestaurant,
-  );
+  @GET('/restaurant/{id}')
+  Future<HomeRestaurantResponseModel> getOneRestaurant(@Path() int id);
 }

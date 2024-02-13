@@ -12,7 +12,7 @@ class HomeRestaurantResponseModel extends HomeSimpleRestaurantResponseModel {
     required super.name,
     required super.typeFood,
     required super.logoPhoto,
-    required super.backgroundPhoto,
+    required super.backgroudPhoto,
     required this.phone,
     required this.locale,
     required this.review,

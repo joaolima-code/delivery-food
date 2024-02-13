@@ -5,6 +5,7 @@ import '../../../../../core/theme/core.theme.style.dart';
 import '../../../../../shared/widgets/forms/form.input.widget.dart';
 import '../cubit/home.timeline.cubit.dart';
 import 'home.timeline.card.widget.dart';
+import 'home.timeline.emptyState.widget.dart';
 
 class HomeTimelineMainContentWidget extends StatefulWidget {
   const HomeTimelineMainContentWidget({super.key});
@@ -55,8 +56,10 @@ class _HomeTimelineMainContentWidgetState
                           return HomeTimelineCardWidget(
                               restaurantEntity: cubit.listRestaurant[index]);
                         })
+                  ] else if (state is Loading) ...<Widget>[
+                    const Center(child: CircularProgressIndicator())
                   ] else ...<Widget>[
-                    Center(child: Text('error'))
+                    const HomeTimelineEmptyStateWidget()
                   ]
                 ]));
       },
