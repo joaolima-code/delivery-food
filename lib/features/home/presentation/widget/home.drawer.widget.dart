@@ -23,12 +23,7 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
 
   @override
   void initState() {
-    initName();
     super.initState();
-  }
-
-  Future<void> initName() async {
-    username = await usernameUsecase.call(null);
   }
 
   @override
@@ -67,7 +62,7 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
                             theme.spacingHorizontal,
                             Flexible(
                                 flex: 2,
-                                child: Text(username ?? '',
+                                child: Text('Menu do usuario',
                                     style: theme.textTheme.titleMedium!
                                         .copyWith(
                                             color: theme.colorScheme.onPrimary),
